@@ -39,7 +39,9 @@ const httpShim = (PORT, timeout) => {
     // Handle a single HTTP request
     const handler = (req, res) => {
       gcfCode[gcfFn](req, res);
-      server.close();
+      if (!timeout) {
+        server.close();
+      }
     };
 
     app.get(`/${gcfFn}`, handler);
@@ -79,7 +81,9 @@ const pubsubShim = (gcfFn, topicName, subscriptionName, timeout) => {
   const messageHandler = (msg) => {
     const cb = () => {
       msg.ack();
-      subscription.removeListener(`message`, messageHandler);
+      if (!timeout) {
+        subscription.removeListener(`message`, messageHandler);
+      }
     };
     if (process.version.includes('v6.')) {
       gcfFn({ data: msg }, cb);
@@ -136,8 +140,10 @@ const storageShim = (gcfFn, bucketName, topicName, subscriptionName, timeout) =>
         const data = JSON.parse(Buffer.from(msg.data, 'base64').toString());
         const cb = () => {
           msg.ack();
-          subscription.removeListener(`message`, messageHandler);
-          resolve(notification);
+          if (!timeout) {
+            subscription.removeListener(`message`, messageHandler);
+            resolve(notification);
+          }
         };
         if (process.version.includes('v6.')) {
           gcfFn(data, cb);
