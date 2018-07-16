@@ -12,7 +12,7 @@
   "scripts": {
     "test": "npm run integration-test",
     "system-test": "gcloud beta functions deploy helloHttp --trigger-http && BASE_URL=\"https://$GCP_REGION-$GCLOUD_PROJECT.cloudfunctions.net/\" ava -T 20s test/*.test.js",
-    "integration-test": "functions-emulator deploy helloHttp --trigger-http && BASE_URL=\"http://localhost:8010/$GCLOUD_PROJECT/$GCF_REGION\" ava -T 20s test/*.test.js"
+    "integration-test": "functions start && functions deploy helloHttp --trigger-http && BASE_URL=\"http://localhost:8010/$GCLOUD_PROJECT/$GCF_REGION\" ava -T 20s test/*.test.js"
   },
   "devDependencies": {
     "@google-cloud/functions-emulator": "^1.0.0-beta.4",
