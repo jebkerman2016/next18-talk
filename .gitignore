@@ -1,2 +1,3 @@
+*.bak
 init.sh
 node_modules/
