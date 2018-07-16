@@ -14,10 +14,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/npm'        # Install dependencies
   args: ['install']
-  dir: 'functions/autodeploy'
 - name: 'gcr.io/cloud-builders/npm'        # Run tests
   args: ['test']
-  dir: 'functions/autodeploy'
 - name: 'gcr.io/cloud-builders/gcloud'     # Deploy function only if previous steps pass
-  args: ['beta', 'functions', 'deploy', 'helloGET', '--trigger-http']
-  dir: 'functions/autodeploy'
+  args: ['beta', 'functions', 'deploy', 'helloHttp', '--trigger-http']
