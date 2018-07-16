@@ -12,7 +12,7 @@
   "scripts": {
     "test": "npm run integration-test",
     "system-test": "gcloud beta functions deploy helloHttp --trigger-http && BASE_URL=\"https://$GCP_REGION-$GCLOUD_PROJECT.cloudfunctions.net/\" ava -T 10s test/*.test.js",
-    "integration-test": "node shim.js http 3000 -t 5000 | (sleep 2 && BASE_URL=\"http://localhost:3000\" ava -T 10s test/*.test.js)"
+    "integration-test": "node shim.js http 3000 -t 10000 | (sleep 2 && BASE_URL=\"http://localhost:3000\" ava -T 10s test/*.test.js)"
   },
   "devDependencies": {
     "ava": "0.25.0",
