@@ -16,5 +16,7 @@ steps:
   args: ['install']
 - name: 'gcr.io/cloud-builders/npm'        # Run tests
   args: ['test']
-- name: 'gcr.io/cloud-builders/gcloud'     # Deploy function only if previous steps pass
+- name: 'gcr.io/cloud-builders/gcloud'     # Delete function only if tests pass
+  args: ['beta', 'functions', 'delete', 'helloHttp']
+- name: 'gcr.io/cloud-builders/gcloud'     # Deploy function only if tests pass
   args: ['beta', 'functions', 'deploy', 'helloHttp', '--trigger-http']
