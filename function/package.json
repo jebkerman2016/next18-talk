@@ -1,10 +1,10 @@
 {
-  "name": "nodejs-docs-samples-functions-hello-world",
+  "name": "testing-talk-sample-function",
   "license": "Apache-2.0",
   "author": "Google Inc.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GoogleCloudPlatform/nodejs-docs-samples.git"
+    "url": "https://github.com/ace-n/testing-talk.git"
   },
   "engines": {
     "node": ">=4.3.2"
