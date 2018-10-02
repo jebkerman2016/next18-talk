@@ -16,16 +16,14 @@
 // [START functions_http_unit_test]
 const test = require(`ava`);
 const sinon = require(`sinon`);
-const uuid = require(`uuid`);
 
 const helloHttp = require(`..`).helloHttp;
 
 test(`helloHttp: should print a name`, t => {
   // Initialize mocks
-  const name = uuid.v4();
   const req = {
     body: {
-      name: name
+      name: 'name'
     }
   };
   const res = { send: sinon.stub() };
@@ -35,7 +33,7 @@ test(`helloHttp: should print a name`, t => {
 
   // Verify behavior of tested function
   t.true(res.send.calledOnce);
-  t.deepEqual(res.send.firstCall.args, [`Hello ${name}!`]);
+  t.deepEqual(res.send.firstCall.args, [`Hello name!`]);
 });
 
 test(`helloHttp: should print hello world`, t => {
