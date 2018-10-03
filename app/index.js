@@ -18,7 +18,7 @@
 const app = require('express')();
 const storage = require(`@google-cloud/storage`)();
 
-app.get('/createBucket', (req, res) => {
+app.post('/createBucket', (req, res) => {
   storage.createBucket(req.body.name)
     .then(res.send('Success!'))
     .catch(err => res.send('Error:', err));

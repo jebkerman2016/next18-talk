@@ -21,7 +21,7 @@ const ava = require('ava');
 // {proxyquire, sinon, uuid, ava} are libraries - imports omitted
 const getMocks = (req, res) => {
   const storageMock = { createBucket: sinon.stub().resolves() };
-  const appMock = { listen: sinon.stub(), get: sinon.stub().yields(req, res) };
+  const appMock = { listen: sinon.stub(), post: sinon.stub().yields(req, res) };
   return {
     program: proxyquire('..', {
       '@google-cloud/storage': sinon.stub().returns(storageMock),
@@ -33,10 +33,9 @@ const getMocks = (req, res) => {
 };
 
 ava('should attempt to create a bucket', t => {
-  const name = `app-test-${uuid.v4()}`; // Make test runs unique
-  const req = { body: { name: name } }; // Fake 'req' object
+  const req = { body: { name: 'name' } }; // Fake 'req' object
   const res = { send: sinon.stub() }; // Fake 'res' object
   const mocks = getMocks(req, res); // Calls all Express routes
 
-  t.deepEqual(mocks.storage.createBucket.firstCall.args, [name]);
+  t.deepEqual(mocks.storage.createBucket.firstCall.args, ['name']);
 });
