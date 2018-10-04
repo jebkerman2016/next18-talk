@@ -23,6 +23,6 @@
  * @param {Object} res Cloud Function response context.
  */
 exports.helloHttp = (req, res) => {
-  res.send(`Hello ${req.body.name || 'World'}!`);
+  res.send(`Hi ${req.body.name || 'World'}!`);
 };
 // [END functions_helloworld_http]

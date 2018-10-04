@@ -24,7 +24,7 @@ test.cb(`helloHttp: should print a name`, (t) => {
     .send({ name: 'John' })
     .expect(200)
     .expect((response) => {
-      t.is(response.text, 'Hello John!');
+      t.is(response.text, 'Hi John!');
     })
     .end(t.end);
 });
@@ -34,7 +34,7 @@ test.cb(`helloHttp: should print hello world`, (t) => {
     .get(`/helloHttp`)
     .expect(200)
     .expect((response) => {
-      t.is(response.text, `Hello World!`);
+      t.is(response.text, `Hi World!`);
     })
     .end(t.end);
 });

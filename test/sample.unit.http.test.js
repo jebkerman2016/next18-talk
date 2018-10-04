@@ -33,7 +33,7 @@ test(`helloHttp: should print a name`, t => {
 
   // Verify behavior of tested function
   t.true(res.send.calledOnce);
-  t.deepEqual(res.send.firstCall.args, [`Hello name!`]);
+  t.deepEqual(res.send.firstCall.args, [`Hi name!`]);
 });
 
 test(`helloHttp: should print hello world`, t => {
@@ -48,6 +48,6 @@ test(`helloHttp: should print hello world`, t => {
 
   // Verify behavior of tested function
   t.true(res.send.calledOnce);
-  t.deepEqual(res.send.firstCall.args, [`Hello World!`]);
+  t.deepEqual(res.send.firstCall.args, [`Hi World!`]);
 });
 // [END functions_http_unit_test]
